@@ -17,12 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
-## HTTP Request
-def my_view(request):
-    return HttpResponse("<b>Uma linda String</b>")
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('recipes.urls'))
+    path('', include('recipes.urls')),
+    path('recipes/', include('recipes.urls'))
 ]
