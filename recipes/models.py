@@ -7,7 +7,8 @@ from django.contrib.auth.models import User #Traz um model de usuario
 class Category(models.Model):
     name = models.CharField(max_length=65)
     
-    def __str__(self):
+    # Este campo é para que os nomes dos registros no admin db django tenham o nome do item
+    def __str__(self): 
         return self.name
         
         
@@ -25,7 +26,9 @@ class Recipe(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
-    cover = models.ImageField(upload_to='recipes/covers/%Y/%M/%d/') #Salva na pasta do ano depois do mes e depois do dia.
+    cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d/') #Salva na pasta do ano depois do mes e depois do dia.
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True) # Quando a categoria for apagada, ele deixa o campo nulo aqui.
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     
+    def __str__(self): 
+        return self.title
